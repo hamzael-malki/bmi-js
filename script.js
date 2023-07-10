@@ -1,25 +1,71 @@
+/*
+ * Code développé par Hamza EL MALKI
+ */
+
 $(document).ready(function() {
-    $('form').submit(function(event) {
-        event.preventDefault(); // Empêche le comportement de soumission du formulaire par défaut
+    var weightInput = $('#weight');
+    var heightInput = $('#height');
+    var submitButton = $('input[type="submit"]');
+    var mentionElement = $('#mention'); // Récupère l'élément où afficher la mention
 
-        // Récupère les valeurs du poids et de la taille
-        var weight = parseFloat($('#weight').val());
-        var height = parseFloat($('#height').val());
-
-        // Vérifie si les valeurs saisies sont valides
-        if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
-            alert('Veuillez saisir des valeurs numériques positives pour le poids et la taille.');
-            return; // Arrête l'exécution du script en cas de données invalides
+    function checkLimits(weight, height) {
+        if (weight < 10 || weight > 200) {
+            alert('Le poids doit être compris entre 10 et 200.');
+            return false;
         }
 
-        // Effectue le calcul de l'IMC
-        var bmi = weight / (height * height);
-        bmi = bmi.toFixed(2); // Arrondit l'IMC à 2 décimales
+        if (height < 0.5 || height > 3) {
+            alert('La taille doit être comprise entre 0.5 et 3.');
+            return false;
+        }
 
-        // Effectue la suite du traitement (affichage du résultat, etc.)
+        return true;
+    }
+
+    function checkEmptyFields() {
+        if (weightInput.val() === '' || heightInput.val() === '') {
+            submitButton.prop('disabled', true);
+        } else {
+            submitButton.prop('disabled', false);
+        }
+    }
+
+    checkEmptyFields();
+
+    weightInput.on('input', function() {
+        checkEmptyFields();
+    });
+
+    heightInput.on('input', function() {
+        checkEmptyFields();
+    });
+
+    $('form').submit(function(event) {
+        event.preventDefault();
+
+        var weight = parseFloat(weightInput.val());
+        var height = parseFloat(heightInput.val());
+
+        if (weightInput.val() === '' || heightInput.val() === '') {
+            alert('Veuillez saisir le poids et la taille.');
+            return;
+        }
+
+        if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
+            alert('Veuillez saisir des valeurs numériques positives pour le poids et la taille.');
+            return;
+        }
+
+        if (!checkLimits(weight, height)) {
+            return;
+        }
+
+        var bmi = weight / (height * height);
+        bmi = bmi.toFixed(2);
+
         var resultElement = $('#result');
         resultElement.text('Your BMI is: ' + bmi);
-        resultElement.removeClass(); // Supprime toutes les classes précédentes
+        resultElement.removeClass();
 
         if (bmi < 18.5) {
             resultElement.addClass('underweight');
@@ -35,7 +81,8 @@ $(document).ready(function() {
             resultElement.append('<p class="message">You are obese. It is important to take immediate action for your health. Consider consulting a healthcare professional or nutritionist for personalized advice and support.</p>');
         }
 
-        // Affiche le paragraphe sur l'importance de l'IMC
         $('#bmi-info').text('BMI is an important indicator of your overall health and can help assess the risk of certain health conditions. However, please note that BMI is a general measure and may not take into account individual variations in body composition and muscle mass.');
+
+        mentionElement.text('Développé par Hamza EL MALKI'); // Ajoute la mention dans l'élément prévu à cet effet
     });
 });
