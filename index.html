@@ -1,117 +1,126 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>BMI Calculator</title>
-    <style>
-        /* CSS styles */
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>BMI Calculator</title>
+        <style>
+            /* CSS styles */
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            margin: 0;
-            padding: 0;
-        }
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f2f2f2;
+                margin: 0;
+                padding: 0;
+            }
 
-        .container {
-            max-width: 500px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
+            .container {
+                max-width: 500px;
+                margin: 50px auto;
+                padding: 20px;
+                background-color: #fff;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
 
-        h1 {
+            h1 {
+                text-align: center;
+                color: #333;
+            }
+
+            form {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            label {
+                display: block;
+                margin-bottom: 10px;
+                font-weight: bold;
+                color: #555;
+            }
+
+            input[type="number"] {
+                width: 100%;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+
+            input[type="submit"] {
+                background-color: #4caf50;
+                color: #fff;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+            input[type="submit"]:hover {
+                background-color: #45a049;
+            }
+
+            #result {
+                text-align: center;
+                margin-bottom: 20px;
+                font-size: 24px;
+            }
+
+            #bmi-info {
+                text-align: center;
+                font-size: 16px;
+                color: #777;
+                margin-bottom: 30px;
+            }
+
+            .message {
+                margin-top: 20px;
+                padding: 10px;
+                background-color: #f2f2f2;
+                border-radius: 5px;
+            }
+
+            .underweight {
+                color: #f44336; /* Red */
+            }
+
+            .normal {
+                color: #4caf50; /* Green */
+            }
+
+            .overweight {
+                color: #ff9800; /* Orange */
+            }
+
+            .obese {
+                color: #f44336; /* Red */
+            }
+
+            .centered {
             text-align: center;
-            color: #333;
-        }
+            margin-top: 20px; /* Ajuste la marge supérieure selon tes besoins */
+            }
 
-        form {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: bold;
-            color: #555;
-        }
-
-        input[type="number"] {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        input[type="submit"] {
-            background-color: #4caf50;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
-
-        #result {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 24px;
-        }
-
-        #bmi-info {
-            text-align: center;
-            font-size: 16px;
-            color: #777;
-            margin-bottom: 30px;
-        }
-
-        .message {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #f2f2f2;
-            border-radius: 5px;
-        }
-
-        .underweight {
-            color: #f44336; /* Red */
-        }
-
-        .normal {
-            color: #4caf50; /* Green */
-        }
-
-        .overweight {
-            color: #ff9800; /* Orange */
-        }
-
-        .obese {
-            color: #f44336; /* Red */
-        }
-    </style>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="script.js"></script>
-</head>
-<body>
-    <div class="container">
-        <h1>BMI Calculator</h1>
-        <form>
-            <label for="weight">Weight (kg):</label>
-            <input type="number" id="weight" name="weight" required>
-            <br><br>
-            <label for="height">Height (m):</label>
-            <input type="number" id="height" name="height" step="0.01" required>
-            <br><br>
-            <input type="submit" value="Calculate BMI">
-        </form>
-        <div id="result"></div>
-        <div id="bmi-info"></div>
-    </div>
-</body>
-</html>
+        </style>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="script.js"></script>
+    </head>
+    <meta charset="UTF-8">
+    <body>
+        <div class="container">
+            <h1>BMI Calculator</h1>
+            <form>
+                <label for="weight">Weight (kg):</label>
+                <input type="number" id="weight" name="weight" required>
+                <br><br>
+                <label for="height">Height (m):</label>
+                <input type="number" id="height" name="height" step="0.01" required>
+                <br><br>
+                <input type="submit" value="Calculate BMI">
+            </form>
+            <div id="result"></div>
+            <div id="bmi-info"></div>
+            <br>
+            <div id="mention" class="centered"></div>
+        </div>
+    </body>
+    </html>

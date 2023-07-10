@@ -83,6 +83,6 @@ $(document).ready(function() {
 
         $('#bmi-info').text('BMI is an important indicator of your overall health and can help assess the risk of certain health conditions. However, please note that BMI is a general measure and may not take into account individual variations in body composition and muscle mass.');
 
-        mentionElement.text('Développé par Hamza EL MALKI'); // Ajoute la mention dans l'élément prévu à cet effet
+        mentionElement.text('By Hamza EL MALKI :)'); // Ajoute la mention dans l'élément prévu à cet effet
     });
 });
